@@ -1,0 +1,75 @@
+/* Calculator box - horizontal center */
+.calculator {
+  background: #111;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+  width: 280px;
+  margin: 0 auto;           /* horizontal center */
+}
+
+/* Button rows */
+.calculator button {
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  font-size: 20px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+/* Number buttons */
+.calculator button:not(.op):not(.equal):not(.clear) {
+  background: #2d2d2d;
+  color: #fff;
+}
+
+.calculator button:not(.op):not(.equal):not(.clear):hover {
+  background: #444;          /* grey hover only for number buttons */
+}
+
+/* Operator buttons */
+.op {
+  background: linear-gradient(135deg, #ff9500, #ff5e00);
+  color: #fff;
+}
+
+.op:hover {
+  background: linear-gradient(135deg, #ffaa33, #ff7a18);
+}
+
+/* Equal button */
+.equal {
+  background: linear-gradient(135deg, #00c853, #64dd17);
+  color: #fff;
+}
+
+.equal:hover {
+  background: linear-gradient(135deg, #00e676, #76ff03);  /* gradient hover fixed */
+}
+
+/* Clear button */
+.clear {
+  background: linear-gradient(135deg, #d50000, #ff1744);
+  color: #fff;
+}
+
+.clear:hover {
+  background: linear-gradient(135deg, #ff5252, #ff1744);  /* gradient hover fixed */
+}
+
+.backspace{
+  background: linear-gradient(135deg, #4b13f2, #1a0ff2);
+  color: #fff;
+}
+
+.backspace:hover {
+  background: linear-gradient(135deg, #2a0685, #22048f);  /* gradient hover fixed */
+}
+
+/* Button press effect */
+button:active {
+  transform: scale(0.95);
+}

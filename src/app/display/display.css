@@ -1,0 +1,20 @@
+/* Display container - center horizontally */
+.display {
+  display: flex;
+  justify-content: center;  /* horizontal center */
+  margin-bottom: 15px;
+}
+
+/* Input box style */
+.display .result-box {
+  width: 20%;               /* tumhara existing width */
+  height: 60px;
+  font-size: 26px;
+  text-align: right;
+  border-radius: 12px;
+  border: none;
+  padding: 10px;
+  background: #000;
+  color: #00ffcc;
+  box-shadow: inset 0 0 5px #00ffcc;
+}

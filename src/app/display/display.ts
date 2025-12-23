@@ -8,5 +8,6 @@ import { Service } from '../service';
   styleUrl: './display.css',
 })
 export class Display {
-constructor(public service: Service) {}
+
+   constructor(public service: Service) {}
 }

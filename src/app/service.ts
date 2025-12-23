@@ -1,83 +1,99 @@
-import { Injectable } from '@angular/core';
+
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Service {
-  a = '';
-  b = '';
-  op = '';
-  display = ''; 
+result = signal<number>(0);
 
-  // Basic operations
-  add(n1: number, n2: number) { return n1 + n2; }
-  sub(n1: number, n2: number) { return n1 - n2; }
-  mul(n1: number, n2: number) { return n1 * n2; }
-  div(n1: number, n2: number) { return n1 / n2; }
+  // NEW: display string
+  display = signal<string>('');
 
-  // Clear all
-  clearAll() {
-    this.a = '';
-    this.b = '';
-    this.op = '';
-    this.display = '';
+  // number add
+  addNumber(n: number) {
+    this.display.set(this.display() + n);
   }
 
-  // Button click
-  setValue(value: string) {
-    if (value === 'AC') {
-      this.clearAll();
-      return;
-    }
-
-    if (value === 'C') {
-      if (this.b !== '') this.b = this.b.slice(0, -1);
-      else if (this.op !== '') this.op = '';
-      else if (this.a !== '') this.a = this.a.slice(0, -1);
-
-      this.display = this.a + this.op + this.b;
-      return;
-    }
-
-    if (value === '=') {
-      this.calculate();
-      return;
-    }
-
-    // Operator
-    if (value === '+' || value === '-' || value === '*' || value === '/') {
-      // ✅ Do not calculate immediately
-      this.op = value;
-    } 
-    // Number or dot
-    else {
-      if (this.op === '') this.a += value;
-      else this.b += value;
-    }
-
-    this.display = this.a + this.op + this.b;
+  // operator add
+  addOperator(op: string) {
+    this.display.set(this.display() + op);
   }
 
-  // Calculate result
-  calculate() {
-    if (this.a !== '' && this.b !== '' && this.op !== '') {
-      const n1 = Number(this.a);
-      const n2 = Number(this.b);
-      let res = 0;
+  // existing logic
+  add(value: number) {
+    this.result.set(this.result() + value);
+  }
 
-      if (this.op === '+') res = this.add(n1, n2);
-      else if (this.op === '-') res = this.sub(n1, n2);
-      else if (this.op === '*') res = this.mul(n1, n2);
-      else if (this.op === '/') res = this.div(n1, n2);
+  subtract(value: number) {
+    this.result.set(this.result() - value);
+  }
 
-      this.display = res.toString();
-      this.a = res.toString();
-      this.b = '';
-      this.op = '';
+  multiply(value: number) {
+    this.result.set(this.result() * value);
+  }
+
+  divide(value: number) {
+    if (value !== 0) {
+      this.result.set(this.result() / value);
+    } else {
+      this.result.set(0);
     }
   }
 
-  getDisplay() {
-    return this.display;
+  //  NEW: equal logic
+  equal() {
+  const exp = this.display();   // ex: 1+1+1 or 2*3*4
+
+  let numbers: number[] = [];
+  let operators: string[] = [];
+  let temp = '';
+
+  //  expression split
+  for (let ch of exp) {
+    if (ch === '+' || ch === '-' || ch === '*' || ch === '/') {
+      numbers.push(Number(temp));
+      operators.push(ch);
+      temp = '';
+    } else {
+      temp += ch;
+    }
+  }
+  numbers.push(Number(temp));
+
+  //calculation (left to right)
+  let total = numbers[0];
+
+  for (let i = 0; i < operators.length; i++) {
+    switch (operators[i]) {
+      case '+':
+        total += numbers[i + 1];
+        break;
+      case '-':
+        total -= numbers[i + 1];
+        break;
+      case '*':
+        total *= numbers[i + 1];
+        break;
+      case '/':
+        total /= numbers[i + 1];
+        break;
+    }
+  }
+
+  this.result.set(total);
+  this.display.set(exp + '=' + total); // ex: 1+1+1=3
+}
+
+  clear() {
+    this.result.set(0);
+    this.display.set('');
+  }
+
+  backspace() {
+    const current = this.display();
+    if (current.length > 0) {
+      this.display.set(current.slice(0, -1)); 
+    }
   }
 }

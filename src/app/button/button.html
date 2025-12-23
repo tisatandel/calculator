@@ -1,24 +1,28 @@
 <div class="calculator">
-  <button (click)="onClick('7')">7</button>
-  <button (click)="onClick('8')">8</button>
-  <button (click)="onClick('9')">9</button>
-  <button (click)="onClick('/')">/</button><br/>
+  <button (click)="number(1)">1</button>
+  <button (click)="number(2)">2</button>
+  <button (click)="number(3)">3</button>
+  <button class="op" (click)="op('+')">+</button>
 
-  <button (click)="onClick('4')">4</button>
-  <button (click)="onClick('5')">5</button>
-  <button (click)="onClick('6')">6</button>
-  <button (click)="onClick('*')">*</button><br/>
+  <br>
 
-  <button (click)="onClick('1')">1</button>
-  <button (click)="onClick('2')">2</button>
-  <button (click)="onClick('3')">3</button>
-  <button (click)="onClick('-')">-</button><br/>
+  <button (click)="number(4)">4</button>
+  <button (click)="number(5)">5</button>
+  <button (click)="number(6)">6</button>
+  <button class="op" (click)="op('-')">-</button>
 
-  <button (click)="onClick('0')">0</button>
-  <button (click)="onClick('.')">.</button>
-  <button (click)="onClick('=')">=</button>
-  <button (click)="onClick('+')">+</button><br/>
+  <br>
 
-  <button (click)="onClick('C')">C</button>
-  <button (click)="onClick('AC')">AC</button>
+  <button (click)="number(7)">7</button>
+  <button (click)="number(8)">8</button>
+  <button (click)="number(9)">9</button>
+  <button class="op" (click)="op('*')">*</button>
+
+  <br>
+
+  <button class="backspace" (click)="service.backspace()">C</button>
+  <button class="clear" (click)="clear()">AC</button>
+  <button (click)="number(0)">0</button>
+  <button class="op" (click)="op('/')">÷</button>
+  <button class="equal" (click)="equal()">=</button>
 </div>
