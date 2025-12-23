@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Service } from '../service';
 
 @Component({
   selector: 'app-display',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './display.css',
 })
 export class Display {
-
+constructor(public service: Service) {}
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Service } from '../service';
 
 @Component({
   selector: 'app-button',
@@ -7,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './button.css',
 })
 export class Button {
+  constructor(public service: Service) {}
 
+  onClick(value: string) {
+    if (value === '=') {
+      this.service.calculate();
+    } else {
+      this.service.setValue(value);
+    }
+  }
 }
