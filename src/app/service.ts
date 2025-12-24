@@ -7,8 +7,8 @@ import { Injectable, signal } from '@angular/core';
 export class Service {
 result = signal<number>(0);
 
-  // NEW: display string
-  display = signal<string>('');
+  // disply 
+  display = signal<string>('0');
 
   // number add
   addNumber(n: number) {
@@ -20,7 +20,7 @@ result = signal<number>(0);
     this.display.set(this.display() + op);
   }
 
-  // existing logic
+  // number result mai add karta hai
   add(value: number) {
     this.result.set(this.result() + value);
   }
@@ -41,9 +41,9 @@ result = signal<number>(0);
     }
   }
 
-  //  NEW: equal logic
+  //  equal
   equal() {
-  const exp = this.display();   // ex: 1+1+1 or 2*3*4
+  const exp = this.display();   // eg. 1+1+1 or 2*3*4
 
   let numbers: number[] = [];
   let operators: string[] = [];
@@ -61,29 +61,32 @@ result = signal<number>(0);
   }
   numbers.push(Number(temp));
 
-  //calculation (left to right)
+  //left to right calculation
   let total = numbers[0];
 
   for (let i = 0; i < operators.length; i++) {
-    switch (operators[i]) {
-      case '+':
-        total += numbers[i + 1];
-        break;
-      case '-':
-        total -= numbers[i + 1];
-        break;
-      case '*':
-        total *= numbers[i + 1];
-        break;
-      case '/':
+    if(operators[i] == '/') {
+    
         total /= numbers[i + 1];
-        break;
     }
+    if(operators[i] == '*') {
+    
+        total *= numbers[i + 1];
+    }
+   if(operators[i] == '+') {
+    
+        total += numbers[i + 1];
+    }
+    if(operators[i] == '-') {
+    
+        total -= numbers[i + 1];
+    }
+     
   }
 
   this.result.set(total);
-  this.display.set(exp + '=' + total); // ex: 1+1+1=3
-}
+  this.display.set(exp + '=' + total); // eg. 1+1+1=3
+  }  
 
   clear() {
     this.result.set(0);

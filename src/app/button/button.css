@@ -5,7 +5,7 @@
   border-radius: 20px;
   box-shadow: 0 15px 30px rgba(0,0,0,0.5);
   width: 280px;
-  margin: 0 auto;           /* horizontal center */
+  margin: 0 auto;           
 }
 
 /* Button rows */
@@ -21,12 +21,12 @@
 }
 
 /* Number buttons */
-.calculator button:not(.op):not(.equal):not(.clear) {
+.calculator button:not(.op):not(.equal):not(.clear):not(.backspace) {
   background: #2d2d2d;
   color: #fff;
 }
 
-.calculator button:not(.op):not(.equal):not(.clear):hover {
+.calculator button:not(.op):not(.equal):not(.clear):not(.backspace):hover {
   background: #444;          /* grey hover only for number buttons */
 }
 
@@ -57,17 +57,19 @@
 }
 
 .clear:hover {
-  background: linear-gradient(135deg, #ff5252, #ff1744);  /* gradient hover fixed */
+  background: linear-gradient(135deg, #ff5252, #ff1744);  
 }
 
-.backspace{
-  background: linear-gradient(135deg, #4b13f2, #1a0ff2);
+.backspace {
+  background: linear-gradient(135deg, #3808c9, #0f04d7);
   color: #fff;
+  transition: background 0.2s ease;
 }
 
 .backspace:hover {
-  background: linear-gradient(135deg, #2a0685, #22048f);  /* gradient hover fixed */
+  background: linear-gradient(135deg,  #4b13f2, #1a0ff2);
 }
+
 
 /* Button press effect */
 button:active {

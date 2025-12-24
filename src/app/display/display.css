@@ -1,13 +1,13 @@
 /* Display container - center horizontally */
 .display {
   display: flex;
-  justify-content: center;  /* horizontal center */
+  justify-content: center;  
   margin-bottom: 15px;
 }
 
 /* Input box style */
 .display .result-box {
-  width: 20%;               /* tumhara existing width */
+  width: 20%;               
   height: 60px;
   font-size: 26px;
   text-align: right;
